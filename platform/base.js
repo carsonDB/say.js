@@ -99,7 +99,7 @@ class SayPlatformBase {
     this.child.stderr.setEncoding('ascii')
 
     if (pipedData) {
-      this.child.stdin.end(pipedData)
+      this.child.stdin.end(iconv.encode(pipedData, this.encoding))
     }
 
     this.child.stderr.once('data', (data) => {
