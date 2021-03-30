@@ -1,10 +1,12 @@
 const childProcess = require('child_process')
 const once = require('one-time')
+const iconv = require('iconv-lite')
 
 class SayPlatformBase {
   constructor () {
     this.child = null
     this.baseSpeed = 0
+    this.encoding = 'utf-8'
   }
 
   /**
@@ -36,7 +38,7 @@ class SayPlatformBase {
     this.child.stderr.setEncoding('ascii')
 
     if (pipedData) {
-      this.child.stdin.end(pipedData)
+      this.child.stdin.end(iconv.encode(pipedData, this.encoding))
     }
 
     this.child.stderr.once('data', (data) => {
@@ -187,6 +189,15 @@ class SayPlatformBase {
 
     this.child.stdin.end()
   }
+
+   /**
+   * set encoding for text to speak, 'utf-8' as default in nodejs.
+   * use iconv-lite to encode.
+   * @param {string} encoding A name of encoding.
+   */
+    setEncoding (encoding) {
+      this.encoding = encoding
+    }
 }
 
 module.exports = SayPlatformBase
