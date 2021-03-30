@@ -9,6 +9,7 @@ declare module 'say' {
       public speak(text: string, voice?: string, speed?: number, callback?: errorCallback): void;
       public stop(): void;
       public getInstalledVoices(callback: errorCallback): void;
+      public setEncoding(encoding: string): void;
     }
   }
 
