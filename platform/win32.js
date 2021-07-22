@@ -60,7 +60,7 @@ class SayPlatformWin32 extends SayPlatformBase {
     // psCommand += `$speak.Speak([Console]::In.ReadToEnd());$speak.Dispose()` // not work in win7 (powershell 2.0)
     psCommand += `$speak.Speak('${text}');$speak.Dispose()`
 
-    // pipedData += text
+    pipedData += text
     args.push(psCommand)
     options.shell = true
 
