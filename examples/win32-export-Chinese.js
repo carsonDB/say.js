@@ -4,7 +4,8 @@ const path = require('path')
 // Export spoken audio to a WAV file
 say.setEncoding('gbk')
 const destFile = 'tmp-test.wav'
-say.export("您好>吗", undefined, 1, path.join(__dirname, destFile), (err) => {
+const text = `您<好">"吗`
+say.export(text, undefined, 1, path.join(__dirname, destFile), (err) => {
   if (err) {
     return console.error(err)
   }

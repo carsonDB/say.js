@@ -58,7 +58,7 @@ class SayPlatformWin32 extends SayPlatformBase {
     }
 
     // psCommand += `$speak.Speak([Console]::In.ReadToEnd());$speak.Dispose()` // not work in win7 (powershell 2.0)
-    psCommand += `$speak.Speak('"${text}"');$speak.Dispose()` // text must wrap by '""', (avoid ">" in text bug)
+    psCommand += `$speak.Speak('"${text.replace(/["']/g, '')}"');$speak.Dispose()` // text must wrap by '""', (avoid ">" in text bug)
 
     pipedData += text
     args.push(psCommand)
